@@ -1,11 +1,16 @@
 import matplotlib.pyplot as plt
 import pandas as pd
-import numpy as np
+import os 
+from flask import Flask
 import matplotlib.dates as mdates
 
 # The converter was registered by pandas on import
 from pandas.plotting import register_matplotlib_converters
 register_matplotlib_converters()
+
+#folder to save file
+app=Flask(__name__)
+app.config['UPLOAD_FOLDER']='./chart'
 
 #Data saham bulan Maret - Juni 2019
 xl=pd.read_csv('./dataSaham/EXCL.JK.csv',parse_dates=['Date'])
@@ -37,4 +42,6 @@ plt.xlabel('Tanggal')
 plt.ylabel('Rupiah (IDR)')
 plt.legend(['PT XL Axiata Tbk','PT Smartfren Telecom Tbk','PT Indosat Tbk','PT Telekomunikasi Indonesia Tbk'],loc='upper center',ncol=4,fontsize=7,bbox_to_anchor=(0.5, 1.06))
 plt.title('Harga Historis Saham Provider Telco Indonesia (April 2019)\n\n')
+namafile='soal3_2.png'
+plt.savefig(os.path.join(app.config['UPLOAD_FOLDER'],namafile))
 plt.show()

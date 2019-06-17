@@ -1,10 +1,16 @@
 import matplotlib.pyplot as plt
 import pandas as pd
+import os 
+from flask import Flask
 import matplotlib.dates as mdates
 
 # The converter was registered by pandas on import
 from pandas.plotting import register_matplotlib_converters
 register_matplotlib_converters()
+
+#folder to save file
+app=Flask(__name__)
+app.config['UPLOAD_FOLDER']='./chart'
 
 #Dataframe from csv
 xl=pd.read_csv('./dataSaham/EXCL.JK.csv',parse_dates=['Date'])
@@ -31,5 +37,7 @@ plt.xlabel('Tanggal',fontsize=9)
 plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%d-%m-%Y'))
 plt.xticks(rotation=65,fontsize=6)
 plt.yticks(fontsize=7)
+namafile='soal3_1.png'
+plt.savefig(os.path.join(app.config['UPLOAD_FOLDER'],namafile))
 plt.show()
 
