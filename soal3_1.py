@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import os 
 from flask import Flask
+import numpy as np
 import matplotlib.dates as mdates
 
 # The converter was registered by pandas on import
@@ -35,7 +36,7 @@ plt.title('Harga Historis Saham Provider Telco Indonesia\n\n')
 plt.ylabel('Rupiah (IDR)',fontsize=9)
 plt.xlabel('Tanggal',fontsize=9)
 plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%d-%m-%Y'))
-plt.xticks(rotation=65,fontsize=6)
+plt.xticks(np.arange(np.datetime64('2019-03-16'), np.datetime64('2019-06-14'),7),rotation=65,fontsize=7)
 plt.yticks(fontsize=7)
 namafile='soal3_1.png'
 plt.savefig(os.path.join(app.config['UPLOAD_FOLDER'],namafile))

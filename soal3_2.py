@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import os 
 from flask import Flask
+import numpy as np
 import matplotlib.dates as mdates
 
 # The converter was registered by pandas on import
@@ -37,7 +38,7 @@ plt.plot(xlapril.index,xlapril['Close'],'g-',
         tlkmapril.index,tlkmapril['Close'],'purple')
 plt.grid(True)
 plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%d-%m-%Y'))
-plt.xticks(rotation=65,fontsize=7)
+plt.xticks(np.arange(np.datetime64('2019-04-01'), np.datetime64('2019-05-01'),1),rotation=65,fontsize=7)
 plt.xlabel('Tanggal')
 plt.ylabel('Rupiah (IDR)')
 plt.legend(['PT XL Axiata Tbk','PT Smartfren Telecom Tbk','PT Indosat Tbk','PT Telekomunikasi Indonesia Tbk'],loc='upper center',ncol=4,fontsize=7,bbox_to_anchor=(0.5, 1.06))
